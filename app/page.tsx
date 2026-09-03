@@ -3,11 +3,19 @@ import { Header } from "./components/Header";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-50 font-sans dark:bg-black">
+    <main className="w-full min-h-screen bg-white flex flex-col items-center">
+      {/* Cabeçalho */}
       <Header />
-      <main className="flex flex-col">
+
+      {/* Carrossel */}
+      <section className="w-full">
         <Carrossel />
-      </main>
-    </div>
+      </section>
+
+      {/* Área reservada para futuras seções */}
+      <div className="w-full max-w-[1440px] px-6 lg:px-2 py-16 flex-1">
+        {/* Futuras seções e componentes entrarão aqui */}
+      </div>
+    </main>
   );
 }
