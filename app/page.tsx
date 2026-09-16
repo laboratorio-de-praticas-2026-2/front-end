@@ -12,9 +12,9 @@ export default function Home() {
         <Carrossel />
       </section>
 
-      {/* Área reservada para futuras seções */}
+      
       <div className="w-full max-w-[1440px] px-6 lg:px-12 py-16 flex-1">
-        {/* Futuras seções e componentes entrarão aqui */}
+       
       </div>
     </main>
   );
