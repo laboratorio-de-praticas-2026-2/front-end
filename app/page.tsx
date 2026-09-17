@@ -5,6 +5,7 @@ import BlocosInformativos from './components/BlocosInformativos';
 import { FeaturedPosts } from './components/FeaturedPosts';
 import { RecentPosts } from './components/RecentPosts';
 import { Footer } from './components/Footer';
+import ChatWidget from './components/ChatWidget';
 
 export default function Home() {
   return (
@@ -35,6 +36,9 @@ export default function Home() {
 
       {/* Rodapé da Aplicação */}
       <Footer />
+
+      {/* Botão flutuante de mensagens/comentários (fixo em toda a landing page) */}
+      <ChatWidget />
     </div>
   );
 }
