@@ -1,21 +1,44 @@
 import { Header } from './components/Header';
 import Carrossel from './components/Carrossel';
+import BannerReformaTributaria from './components/BannerReformaTributaria';
+import BlocosInformativos from './components/BlocosInformativos';
+import { FeaturedPosts } from './components/FeaturedPosts';
+import { RecentPosts } from './components/RecentPosts';
+import { Footer } from './components/Footer';
+import ChatWidget from './components/ChatWidget';
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen bg-white flex flex-col items-center">
-      {/* Cabeçalho */}
+    <div className="min-h-screen flex flex-col bg-white">
+      {/* Header com a borda e selo alinhados */}
       <Header />
 
-      {/* Carrossel*/}
-      <section className="w-full">
+      <main className="flex-grow">
+        {/* Componente de Carrossel */}
         <Carrossel />
-      </section>
 
-      {/* Área reservada para futuras seções */}
-      <div className="w-full max-w-[1440px] px-6 lg:px-12 py-16 flex-1">
-        {/* Futuras seções e componentes entrarão aqui */}
-      </div>
-    </main>
+        {/* ========================================================
+            Reforma Tributária 2026 + Blocos Informativos
+           ======================================================== */}
+        <section id="external-task-area" className="w-full py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12">
+            <BannerReformaTributaria />
+            <BlocosInformativos />
+          </div>
+        </section>
+
+        {/* Seções de Artigos e Notícias do Blog */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 space-y-12">
+          <FeaturedPosts />
+          <RecentPosts />
+        </div>
+      </main>
+
+      {/* Rodapé da Aplicação */}
+      <Footer />
+
+      {/* Botão flutuante de mensagens/comentários (fixo em toda a landing page) */}
+      <ChatWidget />
+    </div>
   );
 }
