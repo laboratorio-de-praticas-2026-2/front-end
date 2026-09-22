@@ -60,6 +60,7 @@ export default function ServicosPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
+                
                 <h3 className="font-bold text-[#0c4a6e] mb-2">Obrigações físicas</h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
                   Solicitação de serviços de forma rápida e organizada.
