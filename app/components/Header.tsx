@@ -4,9 +4,9 @@ import Link from 'next/link';
 
 const navLinks = [
   { name: 'Início', href: '/' },
-  { name: 'Sobre nós', href: '/sobre-nos' },
+  { name: 'Sobre nós', href: '/sobrenos' },
   { name: 'Serviços', href: '/servicos' },
-  { name: 'Soluções', href: '/solucoes' },
+  { name: 'Soluções', href: '/servicos#solucoes' },
   { name: 'Blog', href: '/blog' },
   { name: 'Dúvidas', href: '/duvidas' },
 ];
@@ -16,13 +16,13 @@ export function Header() {
     <header className="relative w-full bg-[#0C4A6E] text-white shadow-md z-50 border-b-20 border-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 h-20 md:h-24 flex items-center justify-between">
 
-        {/* Selo do logo — forma curva ancorada na base do header e alinhada à borda branca */}
+        {}
         <Link
           href="/"
           aria-label="Portal Contábil - Grupo Bortone"
           className="relative inline-block self-end shrink-0 -mb-[4px]"
         >
-          {/* Fundo branco: path customizado */}
+          {}
           <svg
             viewBox="0 0 212 68"
             className="block h-16 md:h-[84px] w-auto"
@@ -35,7 +35,7 @@ export function Header() {
             />
           </svg>
 
-          {/* Texto do logo sobreposto ao selo */}
+          {}
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6 md:px-7 pb-1">
             <span className="text-[18px] md:text-2xl font-extrabold leading-[0.8] tracking-tight text-[#082f49]">
               PORTAL
@@ -53,7 +53,7 @@ export function Header() {
           </div>
         </Link>
 
-        {/* Lado Direito: Links do Menu + Divisor + Botão Login */}
+        {}
         <div className="flex items-center gap-6 lg:gap-8 shrink-0">
           <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-semibold">
             {navLinks.map((link) => (
@@ -67,10 +67,10 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Divisor Vertical */}
+          {}
           <div className="hidden md:block w-[1px] h-12 bg-white/40" />
 
-          {/* Botão Login Laranja */}
+          {}
           <Link
             href="/login"
             className="bg-[#d97706] hover:bg-[#b45309] text-white font-bold text-sm lg:text-base px-8 py-2.5 rounded-full shadow-md transition-all duration-200 inline-flex items-center justify-center whitespace-nowrap"
