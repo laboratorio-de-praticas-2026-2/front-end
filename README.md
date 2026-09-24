@@ -5,7 +5,7 @@ Este é o repositório do front-end do **Portal Contábil**, desenvolvido com [N
 
 ---
 
-##  Como Rodar o Projeto (Desenvolvimento com Docker) ddd
+##  Como Rodar o Projeto (Desenvolvimento com Docker)
 
 Não é necessário ter o Node.js instalado na sua máquina local, apenas o **Docker** e o **Docker Desktop**.
 
