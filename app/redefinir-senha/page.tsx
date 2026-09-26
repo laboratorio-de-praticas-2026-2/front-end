@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import PasswordInput from "../components/PasswordInput";
@@ -15,6 +15,7 @@ async function validarTokenNaAPI(token: string | null): Promise<boolean> {
 // 👇 MOCK: troque pela chamada real de redefinição de senha.
 async function redefinirSenhaNaAPI(token: string, novaSenha: string): Promise<{ sucesso: boolean }> {
   await new Promise((resolve) => setTimeout(resolve, 1200));
+  console.log("Mock: redefinindo senha", { token, novaSenha });
   return { sucesso: true };
 }
 
@@ -29,6 +30,20 @@ function validarRequisitosSenha(senha: string): string[] {
 type EstadoToken = "verificando" | "valido" | "invalido";
 
 export default function RedefinirSenhaPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-zinc-50">
+          <span className="w-6 h-6 border-2 border-zinc-300 border-t-blue-950 rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <RedefinirSenhaContent />
+    </Suspense>
+  );
+}
+
+function RedefinirSenhaContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
