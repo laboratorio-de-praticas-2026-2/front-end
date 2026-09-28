@@ -148,7 +148,7 @@ git checkout -b 09-03-short-release-front
 ```
 
 #### 2. Branch de Release do Produto (Trabalho)
-* **Padrão:** `release/Nome-Do-Teste`
+* **Padrão:** Utilizar o nome padrão indicado pelo git.
 * **Origem:** Obrigatoriamente criada a partir da branch `DD-MM-short-release` correspondente.
 * **Objetivo:** Facilitar a abertura de Pull Requests (PRs) e mitigar conflitos.
 
