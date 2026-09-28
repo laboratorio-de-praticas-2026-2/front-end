@@ -90,9 +90,11 @@ Consulte as configurações de cada repositório para a versão de Node.js adota
 ### 1. Clonar os repositórios
 Em uma pasta de sua preferência:
 
-git clone https://github.com/laboratorio-de-praticas-2026-2/back-end.git
-git clone https://github.com/laboratorio-de-praticas-2026-2/front-end.git
-git clone https://github.com/laboratorio-de-praticas-2026-2/database.git
+```bash
+git clone [https://github.com/laboratorio-de-praticas-2026-2/back-end.git](https://github.com/laboratorio-de-praticas-2026-2/back-end.git)
+git clone [https://github.com/laboratorio-de-praticas-2026-2/front-end.git](https://github.com/laboratorio-de-praticas-2026-2/front-end.git)
+git clone [https://github.com/laboratorio-de-praticas-2026-2/database.git](https://github.com/laboratorio-de-praticas-2026-2/database.git)
+```
 
 ### 2. Configurar o ambiente
 Configure o banco conforme as instruções do repositório `database`. Nos repositórios da aplicação, utilize o `.env.example`, quando disponível, como referência para criar os arquivos de ambiente esperados pelo código.
@@ -102,16 +104,20 @@ A execução de funcionalidades integradas depende da configuração da API, do 
 ### 3. Iniciar o backend
 Em um terminal, a partir da pasta onde os repositórios foram clonados:
 
+```bash
 cd back-end
 npm install
 npm run start:dev
+```
 
 ### 4. Iniciar o frontend
 Em outro terminal, a partir da mesma pasta de trabalho:
 
+```bash
 cd front-end
 npm install
 npm run dev
+```
 
 Acesse o endereço informado pelo servidor do frontend no terminal.
 
@@ -135,9 +141,11 @@ O repositório possui regras automáticas de proteção ativas no GitHub. Todas 
 * ⚠️ **Atenção:** Nomes sem contexto final ou fora do padrão (ex: `09-03-short-release-`) **não acionam** as travas automáticas do GitHub.
 
 **Exemplo prático de criação:**
+```bash
 git checkout develop
 git pull origin develop
 git checkout -b 09-03-short-release-front
+```
 
 #### 2. Branch de Release do Produto (Trabalho)
 * **Padrão:** `release/Nome-Do-Teste`
@@ -175,9 +183,11 @@ Use estes prefixos no título de issues e nas mensagens de commit:
 
 #### 3. Padrão de Commits
 Utilize o prefixo correspondente à task que você assumiu no board:
+```bash
 git commit -m "feat: cria estrutura inicial do header"
 git commit -m "ui: ajusta alinhamento do carrossel"
 git commit -m "chore: adiciona arquivo mock de dados"
+```
 
 ---
 
@@ -196,19 +206,25 @@ As variáveis devem seguir os nomes definidos no código e nos arquivos de exemp
 ### Backend
 Dentro do repositório `back-end`:
 
+```bash
 npm run lint
 npm test
 npm run build
+```
 
 Para testes ponta a ponta, com o ambiente e a configuração de testes preparados:
 
+```bash
 npm run test:e2e
+```
 
 ### Frontend
 Dentro do repositório `front-end`:
 
+```bash
 npm run lint
 npm run build
+```
 
 > **Nota:** O frontend ainda não possui um script `npm test` configurado no `package.json`. A validação da interface deve considerar aspectos visuais, responsividade, navegação e integração manual/mockada com a API.
 
