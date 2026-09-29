@@ -53,7 +53,6 @@ export default function LoginPage() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-              {/* Campo E-mail */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   E-mail
@@ -79,7 +78,6 @@ export default function LoginPage() {
                 )}
               </div>
 
-              {/* Campo Senha */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Senha
@@ -105,7 +103,6 @@ export default function LoginPage() {
                 )}
               </div>
 
-              {/* Link Esqueci minha senha */}
               <div className="text-center pt-1">
                 <Link
                   href="/recuperar-senha"
@@ -115,13 +112,13 @@ export default function LoginPage() {
                 </Link>
               </div>
 
-              {/* Botão Entrar */}
               <button
                 type="submit"
                 className="w-full h-10 bg-gradient-to-r from-[#0C4A6E] via-[#0284C7] to-[#0284C7] hover:opacity-95 text-white font-semibold rounded-lg text-xs shadow-md transition-all mt-2 cursor-pointer"
               >
                 Entrar
               </button>
+
               <div className="text-center pt-4 space-y-2">
                 <p className="text-xs text-[#0284C7] font-medium cursor-pointer hover:underline">
                   Já tenho uma conta
@@ -151,52 +148,6 @@ export default function LoginPage() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0C4A6E] via-transparent to-transparent opacity-85 pointer-events-none" />
-import { useRouter } from 'next/navigation';
-
-export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const router = useRouter();
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Simulando perfis diferentes com base no e-mail digitado
-    if (email.includes('admin')) {
-      localStorage.setItem('userRole', 'admin');
-      localStorage.setItem('isAuthenticated', 'true');
-      router.push('/dashboard');
-    } else {
-      localStorage.setItem('userRole', 'client');
-      localStorage.setItem('isAuthenticated', 'true');
-      router.push('/minha-conta');
-    }
-  };
-
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-6 text-[#072d42] text-center">Tela de Login (Simulada)</h1>
-        
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">E-mail (digite "admin@" para testar o painel)</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="ex: cliente@email.com ou admin@email.com"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#072d42]"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-[#D96B00] hover:bg-[#b85b00] text-white font-semibold py-2 px-4 rounded-md transition-colors"
-          >
-            Entrar
-          </button>
-        </form>
       </div>
     </div>
   );

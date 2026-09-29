@@ -42,14 +42,12 @@ export default function MinhaContaPage() {
   };
 
   useEffect(() => {
-    const isAuth = localStorage.getItem('isAuthenticated');
-    if (!isAuth) {
-      router.push('/login');
-      return;
-    }
+  const fetchData = async () => {
+    await loadUserData(false);
+  };
 
-    loadUserData(false);
-  }, [router]);
+  fetchData();
+}, [router]);
 
   const handleLogout = () => {
     localStorage.removeItem('isAuthenticated');
