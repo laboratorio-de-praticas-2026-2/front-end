@@ -14,7 +14,7 @@ export interface Usuario {
   status: "ativo" | "inativo";
 }
 
-// 👇 MOCK: troque pela chamada real da API de listagem de usuários
+
 async function listarUsuariosNaAPI(): Promise<Usuario[]> {
   await new Promise((resolve) => setTimeout(resolve, 900));
   return [
