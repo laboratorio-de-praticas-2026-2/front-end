@@ -18,26 +18,10 @@ export default function Home() {
         {}
         <Carrossel />
 
-        {}
-        <section id="external-task-area" className="w-full py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12">
-            <BannerReformaTributaria />
-            <BlocosInformativos />
-          </div>
-        </section>
-
-        {}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 space-y-12">
-          <FeaturedPosts />
-          <RecentPosts />
-        </div>
-      </main>
-
-      {}
-      <Footer />
-
-      {}
-      <ChatWidget />
-    </div>
+      
+      <div className="w-full max-w-[1440px] px-6 lg:px-12 py-16 flex-1">
+       
+      </div>
+    </main>
   );
 }
