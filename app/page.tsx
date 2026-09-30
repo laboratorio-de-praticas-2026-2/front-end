@@ -1,16 +1,22 @@
+
 import { Header } from './components/Header';
 import Carrossel from './components/Carrossel';
+import BannerReformaTributaria from './components/BannerReformaTributaria';
+import BlocosInformativos from './components/BlocosInformativos';
+import { FeaturedPosts } from './components/FeaturedPosts';
+import { RecentPosts } from './components/RecentPosts';
+import { Footer } from './components/Footer';
+import ChatWidget from './components/ChatWidget';
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen bg-white flex flex-col items-center">
-      {/* Cabeçalho */}
+    <div className="min-h-screen flex flex-col bg-white">
+      {}
       <Header />
 
-      {/* Carrossel*/}
-      <section className="w-full">
+      <main className="flex-grow">
+        {}
         <Carrossel />
-      </section>
 
       
       <div className="w-full max-w-[1440px] px-6 lg:px-12 py-16 flex-1">
