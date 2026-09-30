@@ -9,11 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
+
     "@phosphor-icons/react": "^2.1.10",
     "lucide-react": "^1.46.0",
-=======
->>>>>>> origin/main
+
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"
