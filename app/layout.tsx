@@ -13,8 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portal Contabil",
-  description: "Portal Contabil Bortone",
+
+  title: "Portal Contábil",
+  description: "Portal Contábil Bortone",
+
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
