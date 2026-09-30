@@ -1,17 +1,20 @@
 'use client';
 
 import Link from 'next/link';
+import {useEffect,useState} from 'react';
+import {api} from '../lib/core';
 
 const navLinks = [
   { name: 'Início', href: '/' },
-  { name: 'Sobre nós', href: '/sobrenos' },
   { name: 'Serviços', href: '/servicos' },
-  { name: 'Soluções', href: '/servicos#solucoes' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Dúvidas', href: '/duvidas' },
+  { name: 'Busca', href: '/busca' },
+  { name: 'Dúvidas', href: '/faq' },
 ];
 
 export function Header() {
+ const [links,setLinks]=useState(navLinks);const [open,setOpen]=useState(false);
+ useEffect(()=>{api<{menu:Array<{label:string;href:string}>}>('header').then(data=>setLinks(data.menu.map(l=>({name:l.label,href:l.href})))).catch(()=>{});},[]);
+
   return (
     <header className="relative w-full bg-[#0C4A6E] text-white shadow-md z-50 border-b-20 border-white">
       <div className="w-full px-4 sm:px-6 lg:px-12 h-20 md:h-24 flex items-center justify-between">
@@ -55,8 +58,9 @@ export function Header() {
 
         {}
         <div className="flex items-center gap-6 lg:gap-8 shrink-0">
+          <button type="button" className="md:hidden text-white font-semibold" aria-label="Abrir menu" aria-expanded={open} onClick={()=>setOpen(!open)}>{open?'Fechar':'Menu'}</button>
           <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm lg:text-base font-semibold">
-            {navLinks.map((link) => (
+            {links.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
@@ -80,6 +84,7 @@ export function Header() {
         </div>
 
       </div>
+      {open&&<nav className="md:hidden flex flex-col p-5 gap-4">{links.map(l=><Link key={l.href} href={l.href} onClick={()=>setOpen(false)}>{l.name}</Link>)}<Link href="/busca">Buscar CPF / CNPJ</Link></nav>}
     </header>
   );
 }

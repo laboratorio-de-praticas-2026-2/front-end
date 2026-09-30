@@ -11,8 +11,8 @@ const slides = [
     title: 'Nossos Serviços',
     description:
       'Realizamos todo o trabalho necessário para a gestão financeira e fiscal da sua empresa, com competência e credibilidade.',
-    buttonText: 'Contate-nos',
-    buttonHref: '/contato',
+    buttonText: 'Conhecer serviços',
+    buttonHref: '/servicos',
   },
   {
     src: '/carrossel/slide-1.svg',
@@ -20,8 +20,8 @@ const slides = [
     title: 'Assessoria Completa',
     description:
       'Soluções contábeis estratégicas focadas no crescimento sustentável e na redução de custos da sua empresa.',
-    buttonText: 'Contate-nos',
-    buttonHref: '/contato',
+    buttonText: 'Conhecer serviços',
+    buttonHref: '/servicos',
   },
   {
     src: '/carrossel/slide-1.svg',
@@ -29,8 +29,8 @@ const slides = [
     title: 'Planejamento Tributário',
     description:
       'Segurança jurídica e conformidade fiscal para você focar no que realmente importa: o seu negócio.',
-    buttonText: 'Contate-nos',
-    buttonHref: '/contato',
+    buttonText: 'Conhecer serviços',
+    buttonHref: '/servicos',
   },
 ];
 
