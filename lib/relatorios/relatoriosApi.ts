@@ -79,7 +79,7 @@ export async function gerarRelatorioNaAPI(
 }
 
 // 👇 MOCK: troque pela API real de exclusão
-export async function excluirRelatorioNaAPI(id: string): Promise<{ sucesso: boolean }> {
+export async function excluirRelatorioNaAPI(_id: string): Promise<{ sucesso: boolean }> {
   await new Promise((resolve) => setTimeout(resolve, 600));
   return { sucesso: true };
 }

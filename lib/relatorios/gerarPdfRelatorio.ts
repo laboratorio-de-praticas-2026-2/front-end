@@ -3,7 +3,6 @@ import type { Relatorio } from "./relatoriosApi";
 
 const AZUL_ESCURO = "#0b2545";
 const AZUL_CLARO = "#3b82f6";
-const TEAL = "#14b8a6";
 const CINZA = "#6b7280";
 
 function formatarData(iso: string) {

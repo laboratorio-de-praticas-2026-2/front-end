@@ -46,25 +46,29 @@ export default function RelatoriosPage() {
     null
   );
 
-  useEffect(() => {
-    carregarRelatorios();
-
-    const recemGerado = sessionStorage.getItem("relatorioRecemGerado");
-    if (recemGerado) {
-      const relatorio: Relatorio = JSON.parse(recemGerado);
-      setRelatorios((prev) => [relatorio, ...prev]);
-      setRelatorioSelecionado(relatorio);
-      setFeedback({ tipo: "sucesso", mensagem: "Relatório gerado com sucesso!" });
-      sessionStorage.removeItem("relatorioRecemGerado");
-    }
-  }, []);
-
   const carregarRelatorios = async () => {
     setCarregando(true);
     const dados = await listarRelatoriosNaAPI();
     setRelatorios(dados);
     setCarregando(false);
   };
+
+  useEffect(() => {
+    async function inicializar() {
+      await carregarRelatorios();
+
+      const recemGerado = sessionStorage.getItem("relatorioRecemGerado");
+      if (recemGerado) {
+        const relatorio: Relatorio = JSON.parse(recemGerado);
+        setRelatorios((prev) => [relatorio, ...prev]);
+        setRelatorioSelecionado(relatorio);
+        setFeedback({ tipo: "sucesso", mensagem: "Relatório gerado com sucesso!" });
+        sessionStorage.removeItem("relatorioRecemGerado");
+      }
+    }
+    inicializar();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const relatoriosFiltrados = relatorios.filter((r) => {
     const bateBusca = r.nome.toLowerCase().includes(busca.toLowerCase());

@@ -20,7 +20,15 @@ export default function GraficoDonut({
   total,
   segmentos,
 }: GraficoDonutProps) {
-  let acumulado = 0;
+  const segmentosComOffset = segmentos.reduce<
+    { seg: Segmento; comprimento: number; offset: number }[]
+  >((acc, seg) => {
+    const acumuladoAnterior = acc.reduce((soma, item) => soma + item.seg.valor, 0);
+    const proporcao = total > 0 ? seg.valor / total : 0;
+    const comprimento = proporcao * CIRCUNFERENCIA;
+    const offset = CIRCUNFERENCIA - (acumuladoAnterior / total) * CIRCUNFERENCIA;
+    return [...acc, { seg, comprimento, offset }];
+  }, []);
 
   return (
     <div className="bg-white rounded-2xl border border-zinc-200 p-5">
@@ -33,28 +41,21 @@ export default function GraficoDonut({
       <div className="flex justify-center">
         <svg width="160" height="160" viewBox="0 0 160 160">
           <circle cx="80" cy="80" r={RAIO} fill="none" stroke="#f3f4f6" strokeWidth="18" />
-          {segmentos.map((seg, index) => {
-            const proporcao = total > 0 ? seg.valor / total : 0;
-            const comprimento = proporcao * CIRCUNFERENCIA;
-            const offset = CIRCUNFERENCIA - (acumulado / total) * CIRCUNFERENCIA;
-            acumulado += seg.valor;
-
-            return (
-              <circle
-                key={index}
-                cx="80"
-                cy="80"
-                r={RAIO}
-                fill="none"
-                stroke={seg.cor}
-                strokeWidth="18"
-                strokeDasharray={`${comprimento} ${CIRCUNFERENCIA - comprimento}`}
-                strokeDashoffset={offset}
-                transform="rotate(-90 80 80)"
-                strokeLinecap="round"
-              />
-            );
-          })}
+          {segmentosComOffset.map(({ seg, comprimento, offset }, index) => (
+            <circle
+              key={index}
+              cx="80"
+              cy="80"
+              r={RAIO}
+              fill="none"
+              stroke={seg.cor}
+              strokeWidth="18"
+              strokeDasharray={`${comprimento} ${CIRCUNFERENCIA - comprimento}`}
+              strokeDashoffset={offset}
+              transform="rotate(-90 80 80)"
+              strokeLinecap="round"
+            />
+          ))}
           <text x="80" y="87" textAnchor="middle" fontSize="28" fontWeight="bold" fill="#18181b">
             {total}
           </text>
