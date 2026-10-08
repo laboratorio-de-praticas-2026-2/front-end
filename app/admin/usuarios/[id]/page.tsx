@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import AdminGuard from "../../../components/AdminGuard";
 import type { Usuario } from "../page";
 
-// 👇 MOCK: troque pela chamada real da API para buscar um usuário por id
+// MOCK: troque pela chamada real da API para buscar um usuário por id
 async function buscarUsuarioPorIdNaAPI(id: string): Promise<Usuario | null> {
   await new Promise((resolve) => setTimeout(resolve, 700));
   const mockUsuarios: Usuario[] = [
@@ -41,7 +41,7 @@ async function buscarUsuarioPorIdNaAPI(id: string): Promise<Usuario | null> {
   return mockUsuarios.find((u) => u.id === id) ?? null;
 }
 
-// 👇 MOCK: troque pela chamada real da API para salvar as edições
+// MOCK: troque pela chamada real da API para salvar as edições
 async function atualizarUsuarioNaAPI(
   id: string,
   dados: Partial<Usuario>
@@ -57,7 +57,7 @@ function validarEmail(email: string): boolean {
 
 function DetalheUsuarioContent() {
   const params = useParams();
-  const router = useRouter();
+  //const router = useRouter();
   const id = params.id as string;
 
   const [usuario, setUsuario] = useState<Usuario | null>(null);
