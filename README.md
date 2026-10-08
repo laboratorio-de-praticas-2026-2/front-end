@@ -1,4 +1,6 @@
+
 # 📊 Portal Contábil
+
 
 O **Portal Contábil** é uma plataforma digital voltada à gestão contábil, fiscal e tributária de pessoas físicas e jurídicas. A proposta é reunir, em um único ambiente, a consulta de obrigações, a solicitação de serviços e a comunicação entre clientes e o escritório de contabilidade.
 
@@ -243,5 +245,3 @@ npm run build
 ## 📝 Licença
 
 A licença de distribuição ainda precisa ser formalizada. Atualmente, o backend está identificado como `UNLICENSED` em seu `package.json`.
-
-
