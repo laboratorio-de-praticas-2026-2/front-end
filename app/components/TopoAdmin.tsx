@@ -18,7 +18,7 @@ export default function TopoAdmin({ nomeUsuario }: TopoAdminProps) {
 
       <div className="flex items-center gap-4">
         <button aria-label="Notificações" className="relative text-zinc-500 hover:text-zinc-700">
-          🔔
+        
           <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-blue-500" />
         </button>
         <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-200 bg-zinc-50 w-64">
@@ -27,7 +27,7 @@ export default function TopoAdmin({ nomeUsuario }: TopoAdminProps) {
             placeholder="Busque aqui"
             className="bg-transparent text-sm flex-1 focus:outline-none"
           />
-          <span className="text-zinc-400">🔍</span>
+          <span className="text-zinc-400"></span>
         </div>
       </div>
     </div>
