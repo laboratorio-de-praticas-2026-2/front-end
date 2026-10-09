@@ -68,7 +68,7 @@ useEffect(() => {
     if (novoRegime && valorAtual !== novoRegime) return novoRegime;
     return valorAtual;
   });
-}, [tipoTributo]);
+}, [tipoTributo, regimesPorTributo]);
 
   const validar = () => {
     const novosErros: Record<string, string> = {};
