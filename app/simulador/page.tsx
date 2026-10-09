@@ -40,15 +40,35 @@ export default function SimuladorPage() {
   const [resultado, setResultado] = useState<ResultadoCalculo | null>(null);
   const [calculando, setCalculando] = useState(false);
   const [historico, setHistorico] = useState<SimulacaoSalva[]>([]);
+  //const historico = listarSimulacoes();
 
   useEffect(() => {
-    setHistorico(listarSimulacoes());
-  }, []);
+    const carregarHistorico = () => {
+      const dados = listarSimulacoes();
+      setHistorico(dados);
+    };
+    carregarHistorico();
+}, []);
 
   // Reseta o regime quando o tipo de tributo muda, para sempre ter uma opção válida
-  useEffect(() => {
-    setRegime(regimesPorTributo[tipoTributo][0]);
-  }, [tipoTributo]);
+  //useEffect(() => {
+   // setRegime(regimesPorTributo[tipoTributo][0]);
+  //}, [tipoTributo]);
+
+  //useEffect(() => {
+  //const novoRegime = regimesPorTributo[tipoTributo]?.[0];
+  //if (novoRegime && regime !== novoRegime) {
+    //setRegime(novoRegime);
+  //}
+//}, [tipoTributo, regime]);
+
+useEffect(() => {
+  const novoRegime = regimesPorTributo[tipoTributo]?.[0];
+  setRegime((valorAtual) => {
+    if (novoRegime && valorAtual !== novoRegime) return novoRegime;
+    return valorAtual;
+  });
+}, [tipoTributo]);
 
   const validar = () => {
     const novosErros: Record<string, string> = {};
