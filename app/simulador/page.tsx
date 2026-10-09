@@ -62,12 +62,9 @@ export default function SimuladorPage() {
   //}
 //}, [tipoTributo, regime]);
 
-useEffect(() => {
+
   const novoRegime = regimesPorTributo[tipoTributo]?.[0];
-  if (novoRegime) {
-    setRegime(novoRegime);
-  }
-}, [tipoTributo]);
+  const regimeAtual = novoRegime ?? regime;
 
   const validar = () => {
     const novosErros: Record<string, string> = {};
@@ -104,11 +101,11 @@ useEffect(() => {
     let resultadoCalculo: ResultadoCalculo;
 
     if (tipoTributo === "IR") {
-      resultadoCalculo = calcularIR(valorNumerico, periodo, regime as RegimeIR);
+      resultadoCalculo = calcularIR(valorNumerico, periodo, regimeAtual as RegimeIR);
     } else if (tipoTributo === "DAS") {
-      resultadoCalculo = calcularDAS(valorNumerico, periodo, regime as RegimeDAS);
+      resultadoCalculo = calcularDAS(valorNumerico, periodo, regimeAtual as RegimeDAS);
     } else {
-      resultadoCalculo = calcularINSS(valorNumerico, periodo, regime as RegimeINSS);
+      resultadoCalculo = calcularINSS(valorNumerico, periodo, regimeAtual as RegimeINSS);
     }
 
     setResultado(resultadoCalculo);
@@ -176,7 +173,7 @@ useEffect(() => {
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium text-zinc-700">Regime</label>
               <select
-                value={regime}
+                value={regimeAtual}
                 onChange={(e) => setRegime(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-lg border border-zinc-300 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
