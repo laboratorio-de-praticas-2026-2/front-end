@@ -67,7 +67,7 @@ useEffect(() => {
   if (novoRegime) {
     setRegime(novoRegime);
   }
-}, [tipoTributo, regimesPorTributo]);
+}, [tipoTributo]);
 
   const validar = () => {
     const novosErros: Record<string, string> = {};
