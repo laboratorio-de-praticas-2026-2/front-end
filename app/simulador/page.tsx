@@ -64,10 +64,9 @@ export default function SimuladorPage() {
 
 useEffect(() => {
   const novoRegime = regimesPorTributo[tipoTributo]?.[0];
-  setRegime((valorAtual) => {
-    if (novoRegime && valorAtual !== novoRegime) return novoRegime;
-    return valorAtual;
-  });
+  if (novoRegime) {
+    setRegime(novoRegime);
+  }
 }, [tipoTributo, regimesPorTributo]);
 
   const validar = () => {
