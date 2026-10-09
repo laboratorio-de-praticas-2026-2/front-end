@@ -1,4 +1,3 @@
-
 import { Header } from './components/Header';
 import Carrossel from './components/Carrossel';
 import BannerReformaTributaria from './components/BannerReformaTributaria';
@@ -11,32 +10,19 @@ import ChatWidget from './components/ChatWidget';
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {}
       <Header />
-
       <main className="flex-grow">
-        {}
         <Carrossel />
 
-        {}
-        <section id="external-task-area" className="w-full py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12">
-            <BannerReformaTributaria />
-            <BlocosInformativos />
-          </div>
-        </section>
-
-        {}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 space-y-12">
+        <div className="w-full max-w-[1440px] px-6 lg:px-12 py-16 flex-1">
+          {/* Conteúdo da página inicial */}
+          <BannerReformaTributaria />
+          <BlocosInformativos />
           <FeaturedPosts />
           <RecentPosts />
         </div>
       </main>
-
-      {}
       <Footer />
-
-      {}
       <ChatWidget />
     </div>
   );
