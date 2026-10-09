@@ -1,4 +1,4 @@
-// ⚠️ ATENÇÃO: As alíquotas e faixas abaixo são baseadas em tabelas públicas de referência
+// ATENÇÃO: As alíquotas e faixas abaixo são baseadas em tabelas públicas de referência
 // (ano-base ~2024/2025) e servem para fins de SIMULAÇÃO. Como essas tabelas mudam todo ano,
 // confirme os valores atualizados com o time antes de considerar isso definitivo em produção.
 
