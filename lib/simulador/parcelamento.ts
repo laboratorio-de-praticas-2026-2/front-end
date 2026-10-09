@@ -6,7 +6,7 @@ export interface ResultadoParcelamento {
   valorTotalJuros: number;
 }
 
-// 👇 Taxa padrão de referência para simulação (configurável pelo usuário no formulário)
+// Taxa padrão de referência para simulação (configurável pelo usuário no formulário)
 export const TAXA_JUROS_PADRAO = 0.01; // 1% ao mês
 
 export function calcularParcelamento(
