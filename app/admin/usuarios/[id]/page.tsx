@@ -57,7 +57,6 @@ function validarEmail(email: string): boolean {
 
 function DetalheUsuarioContent() {
   const params = useParams();
-  //const _router = useRouter();
   const id = params.id as string;
 
   const [usuario, setUsuario] = useState<Usuario | null>(null);
