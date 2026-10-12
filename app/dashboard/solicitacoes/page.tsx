@@ -70,8 +70,10 @@ export default function SolicitacoesPage() {
 
         <div className="flex items-center space-x-5">
           <button className="relative text-gray-400 hover:text-gray-600 transition">
-            <Bell className="w-5 h-5" />
-            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-sky-400 rounded-full" />
+            <Bell className="w-6 h-6 fill-gray-300 stroke-gray-400 hover:fill-gray-400 transition" />
+            <span className="absolute -top-2 -right-2 min-w-5 h-5 px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-[#f4f5f7]">
+              {3}
+            </span>
           </button>
 
           <div className="relative">
@@ -231,8 +233,8 @@ export default function SolicitacoesPage() {
                         item.status === 'Aprovada'
                           ? 'text-emerald-500'
                           : item.status === 'Pendente'
-                          ? 'text-sky-500'
-                          : 'text-red-500'
+                            ? 'text-sky-500'
+                            : 'text-red-500'
                       }
                     >
                       {item.status}
