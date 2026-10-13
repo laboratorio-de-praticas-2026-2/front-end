@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Bell,
   Search,
   DollarSign,
   FileSpreadsheet,
@@ -13,9 +12,52 @@ import {
   ClipboardList,
   PieChart,
 } from 'lucide-react';
+import NotificationBell from '@/app/components/NotificationBell';
 
+interface Recomendacao {
+  id: number;
+  nome: string;
+  descricao: string;
+}
 
 export default function InicioPage() {
+  const [recomendacoes, setRecomendacoes] = useState<Recomendacao[]>([]);
+  const [loadingRecomendacoes, setLoadingRecomendacoes] = useState(true);
+
+  const usuarioId = 14;
+
+  useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3333';
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+
+    fetch(`${API_URL}/recomendacao/${usuarioId}`, {
+      headers: {
+        Authorization: token ? `Bearer ${token}` : '',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Falha ao buscar recomendações');
+        return res.json();
+      })
+      .then((data) => setRecomendacoes(data))
+      .catch((err) => console.error('[Recomendações] Erro ao carregar:', err))
+      .finally(() => setLoadingRecomendacoes(false));
+  }, [usuarioId]);
+
+  // Função para retornar o ícone correto de acordo com o nome da recomendação
+  const renderIconeRecomendacao = (nome: string) => {
+    const nomeLower = nome.toLowerCase();
+    if (nomeLower.includes('nota') || nomeLower.includes('emissão')) {
+      return <FileSpreadsheet className="w-5 h-5 text-[#1a85c2]" />;
+    }
+    if (nomeLower.includes('dre') || nomeLower.includes('relatório')) {
+      return <TrendingUp className="w-5 h-5 text-[#1a85c2]" />;
+    }
+    if (nomeLower.includes('certidõ') || nomeLower.includes('certidao')) {
+      return <Receipt className="w-5 h-5 text-[#1a85c2]" />;
+    }
+    return <AlertCircle className="w-5 h-5 text-[#1a85c2]" />;
+  };
 
   return (
     <div className="-m-8 p-8 bg-[#f8f9fb] min-h-screen flex flex-col font-sans text-gray-800 relative">
@@ -25,17 +67,12 @@ export default function InicioPage() {
           <h1 className="text-2xl font-bold text-gray-900">Olá Ana Flávia</h1>
           <span className="text-gray-400 font-medium text-sm">»</span>
           <span className="text-sm font-medium text-gray-400">
-              {new Date().toLocaleDateString('pt-BR')}
+            {new Date().toLocaleDateString('pt-BR')}
           </span>
         </div>
 
         <div className="flex items-center space-x-6">
-          <button className="relative text-gray-400 hover:text-gray-600 transition">
-            <Bell className="w-6 h-6 fill-gray-300 stroke-gray-400 hover:fill-gray-400 transition" />
-            <span className="absolute -top-2 -right-2 min-w-5 h-5 px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-[#f4f5f7]">
-              {3}
-            </span>
-          </button>
+          <NotificationBell />
 
           <div className="relative">
             <input
@@ -54,7 +91,7 @@ export default function InicioPage() {
         <div className="xl:col-span-9 space-y-8">
           
           {/* Card Principal: Impostos a Vencer */}
-          <div className="border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm">
+          <div className="border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm bg-white">
             
             <div className="flex items-center space-x-3 mb-2">
               <DollarSign className="w-6 h-6 text-[#022b49]" />
@@ -134,55 +171,33 @@ export default function InicioPage() {
             </div>
           </div>
 
-          {/* Serviços Recomendados */}
+          {/* Serviços Recomendados (Dinâmicos via API) */}
           <div className="pt-4 w-full">
             <h2 className="text-xl font-bold text-[#022b49] mb-6">Serviços recomendados para você:</h2>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="border border-gray-200 rounded-2xl p-5 flex flex-col justify-between shadow-sm bg-white hover:border-sky-300 transition">
-                <div>
-                  <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-                    <FileSpreadsheet className="w-5 h-5 text-[#1a85c2]" />
+            {loadingRecomendacoes ? (
+              <div className="text-sm text-gray-400 py-4">Carregando serviços recomendados...</div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {recomendacoes.map((item) => (
+                  <div
+                    key={item.id}
+                    className="border border-gray-200 rounded-2xl p-5 flex flex-col justify-between shadow-sm bg-white hover:border-sky-300 transition"
+                  >
+                    <div>
+                      <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
+                        {renderIconeRecomendacao(item.nome)}
+                      </div>
+                      <h3 className="text-sm font-bold text-[#022b49] mb-2">{item.nome}</h3>
+                      <p className="text-[11px] text-gray-500 leading-relaxed">{item.descricao}</p>
+                    </div>
+                    <a href="#" className="text-xs text-[#1a85c2] font-semibold mt-6 inline-block">
+                      Veja mais
+                    </a>
                   </div>
-                  <h3 className="text-sm font-bold text-[#022b49] mb-2">Emissão de Notas</h3>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">Emita suas notas fiscais de serviço de forma simplificada.</p>
-                </div>
-                <a href="#" className="text-xs text-[#1a85c2] font-semibold mt-6 inline-block">Veja mais</a>
+                ))}
               </div>
-
-              <div className="border border-gray-200 rounded-2xl p-5 flex flex-col justify-between shadow-sm bg-white hover:border-sky-300 transition">
-                <div>
-                  <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-                    <TrendingUp className="w-5 h-5 text-[#1a85c2]" />
-                  </div>
-                  <h3 className="text-sm font-bold text-[#022b49] mb-2">Relatório DRE</h3>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">Acompanhe os resultados e o lucro real da sua empresa.</p>
-                </div>
-                <a href="#" className="text-xs text-[#1a85c2] font-semibold mt-6 inline-block">Veja mais</a>
-              </div>
-
-              <div className="border border-gray-200 rounded-2xl p-5 flex flex-col justify-between shadow-sm bg-white hover:border-sky-300 transition">
-                <div>
-                  <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-                    <Receipt className="w-5 h-5 text-[#1a85c2]" />
-                  </div>
-                  <h3 className="text-sm font-bold text-[#022b49] mb-2">Certidões</h3>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">Retire suas CNDs federais, estaduais e municipais.</p>
-                </div>
-                <a href="#" className="text-xs text-[#1a85c2] font-semibold mt-6 inline-block">Veja mais</a>
-              </div>
-
-              <div className="border border-gray-200 rounded-2xl p-5 flex flex-col justify-between shadow-sm bg-white hover:border-sky-300 transition">
-                <div>
-                  <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-                    <AlertCircle className="w-5 h-5 text-[#1a85c2]" />
-                  </div>
-                  <h3 className="text-sm font-bold text-[#022b49] mb-2">Alerta Pendências</h3>
-                  <p className="text-[11px] text-gray-500 leading-relaxed">Saiba quando houver irregularidade no CNPJ.</p>
-                </div>
-                <a href="#" className="text-xs text-[#1a85c2] font-semibold mt-6 inline-block">Veja mais</a>
-              </div>
-            </div>
+            )}
           </div>
 
         </div>
@@ -191,7 +206,7 @@ export default function InicioPage() {
         <div className="xl:col-span-3 space-y-4">
           
           {/* Card da Empresa */}
-          <div className="border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <div className="border border-gray-200 rounded-2xl p-6 shadow-sm bg-white">
             <div className="flex items-center space-x-3 mb-6 border-b border-gray-100 pb-4">
               <Building className="w-5 h-5 text-[#022b49]" />
               <h2 className="text-lg font-bold text-gray-900">Minha Empresa</h2>
@@ -248,6 +263,6 @@ export default function InicioPage() {
         </div>
 
       </div>
-    </div >
+    </div>
   );
 }

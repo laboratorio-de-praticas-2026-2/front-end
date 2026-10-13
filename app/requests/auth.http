@@ -1,0 +1,20 @@
+### Teste de Login no Backend NestJS
+POST http://localhost:3333/auth/login
+Content-Type: application/json
+
+{
+  "email": "alana@contabil.gmail",
+  "senha": "senha_segura_123"
+}
+
+### 1. Cadastrar Novo Usuário (Cliente)
+POST http://localhost:3333/clientes
+Content-Type: application/json
+
+{
+  "nome": "Alana Silva",
+  "email": "alana@contabil.gmail",
+  "senha": "senha_segura_123",
+  "cpfCnpj": "123.456.789-09",
+  "celular": "13999999999"
+}
