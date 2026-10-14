@@ -6,7 +6,7 @@ import {
   relatoriosApi,
   type DadosSimulacao,
   type ResultadoSimulacao,
-} from '../../dashboard/relatorios/relatorios-api';
+} from '../../relatorios/relatorios-api';
 
 const moeda = (valor: number) =>
   new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
@@ -51,7 +51,7 @@ export default function DebitosPage() {
       !Number.isInteger(quantidadeParcelas) || quantidadeParcelas < 1 || quantidadeParcelas > 360 ||
       !Number.isFinite(taxa) || taxa < 0 || taxa > 100 || !Number.isInteger(taxa * 100)
     ) {
-      setErro('Confira os valores: use até duas casas decimais, de 1 a 360 parcelas e juros entre 0% e 100%.');
+      setErro('Confira os valores: use atÃ© duas casas decimais, de 1 a 360 parcelas e juros entre 0% e 100%.');
       return;
     }
 
@@ -67,7 +67,7 @@ export default function DebitosPage() {
       setResultado(resposta);
       setUltimaSimulacao(new Date());
     } catch (falha) {
-      setErro(falha instanceof Error ? falha.message : 'Não foi possível realizar a simulação.');
+      setErro(falha instanceof Error ? falha.message : 'NÃ£o foi possÃ­vel realizar a simulaÃ§Ã£o.');
     } finally {
       setCarregando(false);
     }
@@ -76,7 +76,7 @@ export default function DebitosPage() {
   const campos: { chave: CampoValor; titulo: string; descricao: string }[] = [
     { chave: 'impostos', titulo: 'Impostos', descricao: 'Valor dos tributos em aberto' },
     { chave: 'multas', titulo: 'Multas', descricao: 'Multas e penalidades' },
-    { chave: 'honorarios', titulo: 'Honorários', descricao: 'Custos de honorários' },
+    { chave: 'honorarios', titulo: 'HonorÃ¡rios', descricao: 'Custos de honorÃ¡rios' },
   ];
 
   return (
@@ -84,14 +84,14 @@ export default function DebitosPage() {
       {/* Topo / Header */}
       <div className="flex items-center justify-between pb-4 border-b-2 border-purple-100 mb-8">
         <div className="flex items-center space-x-3">
-          <h1 className="text-2xl font-bold text-gray-900">Olá Ana Flávia</h1>
-          <span className="text-gray-400 font-medium text-sm">»</span>
+          <h1 className="text-2xl font-bold text-gray-900">OlÃ¡ Ana FlÃ¡via</h1>
+          <span className="text-gray-400 font-medium text-sm">Â»</span>
           <span className="text-sm font-medium text-gray-400" suppressHydrationWarning>
             {new Date().toLocaleDateString('pt-BR')}
           </span>
         </div>
         <div className="flex items-center space-x-6">
-          <div className="relative text-gray-400" aria-label="Notificações">
+          <div className="relative text-gray-400" aria-label="NotificaÃ§Ãµes">
             <Bell className="w-6 h-6 fill-gray-300 stroke-gray-400" />
           </div>
           <div className="relative">
@@ -104,12 +104,12 @@ export default function DebitosPage() {
 
       <div className="flex flex-col md:flex-row md:items-start justify-between mb-8 space-y-4 md:space-y-0">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-1">Simulador de Débitos</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">Simulador de DÃ©bitos</h1>
           <p className="text-sm text-gray-500">Calcule uma estimativa de pagamento e parcelamento.</p>
         </div>
         <div className="flex items-center space-x-4">
           <span className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-gray-700">
-            <span>Simulação de débitos</span><ChevronDown className="w-4 h-4" />
+            <span>SimulaÃ§Ã£o de dÃ©bitos</span><ChevronDown className="w-4 h-4" />
           </span>
         </div>
       </div>
@@ -120,15 +120,15 @@ export default function DebitosPage() {
             <div className="flex flex-col md:flex-row border-b border-gray-100">
               <div className="bg-[#fafafa] p-6 md:w-64 border-r border-gray-100 flex flex-col gap-6 min-w-[220px]">
                 <div>
-                  <p className="text-xs text-gray-500 font-medium mb-1">Componentes do débito</p>
+                  <p className="text-xs text-gray-500 font-medium mb-1">Componentes do dÃ©bito</p>
                   <p className="text-sm font-bold text-gray-900">3</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 font-medium mb-1">Última Simulação</p>
-                  <p className="text-sm font-bold text-gray-900">{ultimaSimulacao ? dataHora(ultimaSimulacao) : 'Ainda não realizada'}</p>
+                  <p className="text-xs text-gray-500 font-medium mb-1">Ãšltima SimulaÃ§Ã£o</p>
+                  <p className="text-sm font-bold text-gray-900">{ultimaSimulacao ? dataHora(ultimaSimulacao) : 'Ainda nÃ£o realizada'}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 font-medium mb-1">Situação</p>
+                  <p className="text-xs text-gray-500 font-medium mb-1">SituaÃ§Ã£o</p>
                   <p className="text-sm font-bold text-gray-900">{carregando ? 'Calculando' : resultado ? 'Calculada' : 'Aguardando dados'}</p>
                 </div>
               </div>
@@ -145,16 +145,16 @@ export default function DebitosPage() {
                 <div>
                   <p className="text-xs text-gray-400 font-medium mb-1">Nota</p>
                   <p className="text-xs text-gray-900 font-medium leading-relaxed">
-                    Esta simulação apresenta uma estimativa dos débitos informados, considerando as condições
-                    fornecidas. Os valores estão sujeitos à confirmação e podem sofrer alterações.
+                    Esta simulaÃ§Ã£o apresenta uma estimativa dos dÃ©bitos informados, considerando as condiÃ§Ãµes
+                    fornecidas. Os valores estÃ£o sujeitos Ã  confirmaÃ§Ã£o e podem sofrer alteraÃ§Ãµes.
                   </p>
                 </div>
               </div>
             </div>
 
             <form onSubmit={simular} className="p-6 md:p-8">
-              <h2 className="text-base font-bold text-gray-900 mb-2">Dados para simulação</h2>
-              <p className="text-xs text-gray-500 mb-6">Informe os valores em reais. Use ponto ou vírgula como separador decimal.</p>
+              <h2 className="text-base font-bold text-gray-900 mb-2">Dados para simulaÃ§Ã£o</h2>
+              <p className="text-xs text-gray-500 mb-6">Informe os valores em reais. Use ponto ou vÃ­rgula como separador decimal.</p>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs mb-6">
                   <thead className="bg-[#fafafa]">
@@ -203,25 +203,25 @@ export default function DebitosPage() {
               {erro && <p role="alert" className="mb-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg p-3">{erro}</p>}
               <button type="submit" disabled={carregando}
                 className="w-full sm:w-auto px-6 py-2.5 bg-[#0ea5e9] hover:bg-sky-600 disabled:opacity-60 text-white rounded-lg text-sm font-semibold transition">
-                {carregando ? 'Calculando...' : 'Simular débitos'}
+                {carregando ? 'Calculando...' : 'Simular dÃ©bitos'}
               </button>
               <div className="flex justify-end border-t border-gray-200 pt-6 mt-6">
                 <div className="w-full md:w-80 space-y-4">
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-400 font-medium">Subtotal</span>
-                    <span className="text-gray-900 font-bold">{resultado ? moeda(resultado.subtotal) : '—'}</span>
+                    <span className="text-gray-900 font-bold">{resultado ? moeda(resultado.subtotal) : 'â€”'}</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-400 font-medium">Parcelas</span>
-                    <span className="text-gray-900 font-bold">{resultado ? resultado.parcelas : '—'}</span>
+                    <span className="text-gray-900 font-bold">{resultado ? resultado.parcelas : 'â€”'}</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-400 font-medium">Valor por parcela</span>
-                    <span className="text-gray-900 font-bold">{resultado ? moeda(resultado.valorParcela) : '—'}</span>
+                    <span className="text-gray-900 font-bold">{resultado ? moeda(resultado.valorParcela) : 'â€”'}</span>
                   </div>
                   <div className="border-t border-gray-200 pt-4 mt-2 flex justify-between text-sm">
                     <span className="text-gray-900 font-bold">Valor Total</span>
-                    <span className="text-gray-900 font-bold">{resultado ? moeda(resultado.total) : '—'}</span>
+                    <span className="text-gray-900 font-bold">{resultado ? moeda(resultado.total) : 'â€”'}</span>
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ export default function DebitosPage() {
             erro ? 'border-red-300 text-red-600' : resultado ? 'border-green-300 text-green-600' : 'border-orange-300 text-orange-500'
           }`}>
             {erro ? <AlertCircle className="w-4 h-4" /> : resultado ? <CheckCircle2 className="w-4 h-4" /> : <Clock className="w-4 h-4" />}
-            <span className="text-sm font-medium">{erro ? 'Falha na simulação' : carregando ? 'Simulando...' : resultado ? 'Simulação concluída' : 'Aguardando simulação'}</span>
+            <span className="text-sm font-medium">{erro ? 'Falha na simulaÃ§Ã£o' : carregando ? 'Simulando...' : resultado ? 'SimulaÃ§Ã£o concluÃ­da' : 'Aguardando simulaÃ§Ã£o'}</span>
           </div>
           <div className="border border-gray-200 rounded-2xl p-6 bg-white text-center shadow-sm">
             <h3 className="text-sm font-bold text-gray-900 mb-4">Precisa de Ajuda?</h3>
@@ -245,26 +245,26 @@ export default function DebitosPage() {
           </div>
           <div className="border border-gray-200 rounded-2xl bg-white shadow-sm overflow-hidden">
             <div className="p-5 border-b border-gray-100">
-              <h3 className="text-sm font-bold text-gray-900">Sumário</h3>
+              <h3 className="text-sm font-bold text-gray-900">SumÃ¡rio</h3>
             </div>
             <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#fafafa]">
               <span className="text-xs font-bold text-gray-900">Total</span>
-              <span className="text-sm font-bold text-gray-900">{resultado ? moeda(resultado.total) : '—'}</span>
+              <span className="text-sm font-bold text-gray-900">{resultado ? moeda(resultado.total) : 'â€”'}</span>
             </div>
             <div className="p-6 relative">
               {resultado ? (
                 <div className="space-y-4 text-xs">
                   <div className="flex justify-between"><span className="text-gray-400">Impostos</span><strong>{moeda(resultado.impostos)}</strong></div>
                   <div className="flex justify-between"><span className="text-gray-400">Multas</span><strong>{moeda(resultado.multas)}</strong></div>
-                  <div className="flex justify-between"><span className="text-gray-400">Honorários</span><strong>{moeda(resultado.honorarios)}</strong></div>
+                  <div className="flex justify-between"><span className="text-gray-400">HonorÃ¡rios</span><strong>{moeda(resultado.honorarios)}</strong></div>
                   <div className="flex justify-between"><span className="text-gray-400">Juros mensais</span><strong>{resultado.taxaJurosMensal}%</strong></div>
                   <div className="flex justify-between"><span className="text-gray-400">Parcelamento</span><strong>{resultado.parcelas}x de {moeda(resultado.valorParcela)}</strong></div>
                 </div>
-              ) : <p className="text-xs text-gray-500">Preencha os dados e clique em “Simular débitos” para visualizar o resultado.</p>}
+              ) : <p className="text-xs text-gray-500">Preencha os dados e clique em â€œSimular dÃ©bitosâ€ para visualizar o resultado.</p>}
             </div>
             <div className="p-5 border-t border-gray-100 flex justify-between items-center">
               <span className="text-xs font-bold text-gray-900">Valor Total</span>
-              <span className="px-3 py-1 bg-sky-100 text-gray-900 font-bold rounded-full text-xs">{resultado ? moeda(resultado.total) : '—'}</span>
+              <span className="px-3 py-1 bg-sky-100 text-gray-900 font-bold rounded-full text-xs">{resultado ? moeda(resultado.total) : 'â€”'}</span>
             </div>
           </div>
         </div>
