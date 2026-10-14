@@ -36,6 +36,27 @@ export interface CriarRelatorio {
   data_termino: string;
 }
 
+/** Dados enviados para POST /relatorios/simulacao. */
+export interface DadosSimulacao {
+  impostos: number;
+  multas: number;
+  honorarios: number;
+  parcelas?: number;
+  taxaJurosMensal?: number;
+}
+
+/** Resultado calculado pelo backend. */
+export interface ResultadoSimulacao {
+  impostos: number;
+  multas: number;
+  honorarios: number;
+  subtotal: number;
+  parcelas: number;
+  taxaJurosMensal: number;
+  total: number;
+  valorParcela: number;
+}
+
 async function executarFetch(
   path: string,
   options?: RequestInit
@@ -116,23 +137,27 @@ async function requisicao<T>(
 }
 
 export const relatoriosApi = {
+  /** GET /relatorios */
   listar: (pagina = 1, nome = '') =>
     requisicao<PaginaRelatorios>(
       `/relatorios?page=${pagina}&limit=5&nome=${encodeURIComponent(nome)}`
     ),
 
+  /** POST /relatorios */
   criar: (dados: CriarRelatorio) =>
     requisicao<Relatorio>('/relatorios', {
       method: 'POST',
       body: JSON.stringify(dados),
     }),
 
+  /** POST /relatorios/generate */
   gerar: (relatorioId: string) =>
     requisicao<{ status: string }>('/relatorios/generate', {
       method: 'POST',
       body: JSON.stringify({ relatorioId }),
     }),
 
+  /** DELETE /relatorios/:id */
   excluir: (id: string) =>
     requisicao<unknown>(
       `/relatorios/${encodeURIComponent(id)}`,
@@ -141,6 +166,15 @@ export const relatoriosApi = {
       }
     ),
 
+  /** POST /relatorios/simulacao */
+  simular: (dados: DadosSimulacao, signal?: AbortSignal) =>
+    requisicao<ResultadoSimulacao>('/relatorios/simulacao', {
+      method: 'POST',
+      body: JSON.stringify(dados),
+      signal,
+    }),
+
+  /** GET /relatorios/:id/preview ou /download */
   pdf: async (
     id: string,
     acao: 'preview' | 'download'
