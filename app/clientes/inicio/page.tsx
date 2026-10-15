@@ -86,13 +86,13 @@ export default function InicioPage() {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-5">
-        
+
         {/* ================= COLUNA ESQUERDA ================= */}
         <div className="xl:col-span-9 space-y-8">
-          
+
           {/* Card Principal: Impostos a Vencer */}
           <div className="border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm bg-white">
-            
+
             <div className="flex items-center space-x-3 mb-2">
               <DollarSign className="w-6 h-6 text-[#022b49]" />
               <h2 className="text-xl font-bold text-gray-900">Impostos a Vencer</h2>
@@ -120,9 +120,9 @@ export default function InicioPage() {
             {/* Seção 2: Encargos Trabalhistas */}
             <div className="mb-8">
               <h3 className="font-extrabold text-gray-900 mb-4 text-lg">Encargos Trabalhistas</h3>
-              
+
               <div className="bg-[#f8fafc] rounded-xl p-5 grid grid-cols-1 sm:grid-cols-2 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
-                
+
                 {/* INSS */}
                 <div className="pt-4 sm:pt-0 sm:pr-6 first:pt-0">
                   <div className="flex justify-between items-start mb-2">
@@ -164,7 +164,7 @@ export default function InicioPage() {
                   <span className="font-extrabold text-[#022b49]">R$ 6.720,75</span>
                 </div>
               </div>
-              
+
               <button className="bg-[#1a85c2] hover:bg-[#156e9f] text-white px-8 py-3 rounded-lg text-sm font-semibold transition shadow-md w-full md:w-auto">
                 Ir para pagamento
               </button>
@@ -174,7 +174,7 @@ export default function InicioPage() {
           {/* Serviços Recomendados (Dinâmicos via API) */}
           <div className="pt-4 w-full">
             <h2 className="text-xl font-bold text-[#022b49] mb-6">Serviços recomendados para você:</h2>
-            
+
             {loadingRecomendacoes ? (
               <div className="text-sm text-gray-400 py-4">Carregando serviços recomendados...</div>
             ) : (
@@ -204,14 +204,14 @@ export default function InicioPage() {
 
         {/* ================= COLUNA DIREITA ================= */}
         <div className="xl:col-span-3 space-y-4">
-          
+
           {/* Card da Empresa */}
           <div className="border border-gray-200 rounded-2xl p-6 shadow-sm bg-white">
             <div className="flex items-center space-x-3 mb-6 border-b border-gray-100 pb-4">
               <Building className="w-5 h-5 text-[#022b49]" />
               <h2 className="text-lg font-bold text-gray-900">Minha Empresa</h2>
             </div>
-            
+
             <div className="mb-6">
               <p className="text-xs font-bold text-[#022b49]">12.345.678/0001-90</p>
               <p className="text-sm font-extrabold text-gray-900 mt-1">Empresa Exemplo S/A</p>

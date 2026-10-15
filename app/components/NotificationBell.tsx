@@ -35,7 +35,7 @@ export default function NotificationBell() {
         title={isConnected ? 'Notificações ativas' : 'Desconectado do servidor de notificações'}
       >
         <Bell className="w-6 h-6 fill-gray-300 stroke-gray-400 hover:fill-gray-400 transition" />
-        
+
         {notificacoes.length > 0 && (
           <span className="absolute -top-1 -right-1 min-w-5 h-5 px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-[#f8f9fb] animate-pulse">
             {notificacoes.length}
@@ -79,7 +79,7 @@ export default function NotificationBell() {
                       {item.titulo}
                     </h4>
                   </div>
-                  
+
                   <p className="text-[11px] text-gray-600 leading-relaxed pl-5">
                     {item.mensagem}
                   </p>
